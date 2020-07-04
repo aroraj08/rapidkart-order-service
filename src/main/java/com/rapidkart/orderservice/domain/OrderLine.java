@@ -29,8 +29,4 @@ public class OrderLine extends BaseEntity {
     private Order order;
 
     private Long itemId;
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
 }

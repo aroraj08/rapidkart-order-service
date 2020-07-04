@@ -20,6 +20,8 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Long createOrder(OrderDto orderDto) {
         Order order = orderMapper.orderDtoToOrder(orderDto);
+
+        order.getOrderLines().forEach(orderLine -> orderLine.setOrder(order));
         Order savedOrder = orderRepository.save(order);
         return savedOrder.getId();
     }
