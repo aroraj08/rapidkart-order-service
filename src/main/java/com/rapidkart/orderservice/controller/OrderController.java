@@ -1,18 +1,16 @@
 package com.rapidkart.orderservice.controller;
 
+import com.rapidkart.orderservice.exceptions.CustomerNotFoundException;
 import com.rapidkart.orderservice.model.OrderDto;
 import com.rapidkart.orderservice.service.OrderService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.net.URI;
 
 @RestController
-@RequestMapping("/order/api/v1")
+@RequestMapping("/api/v1/orders")
 public class OrderController {
 
     private final OrderService orderService;
@@ -22,12 +20,15 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    @PostMapping
-    public ResponseEntity createOrder(@RequestBody @Valid OrderDto orderDto) {
+    @PostMapping("/{customerId}")
+    public ResponseEntity createOrder(@PathVariable(name="customerId") Long customerId,
+                                      @RequestBody @Valid OrderDto orderDto)
+            throws CustomerNotFoundException {
 
         // validate order
-        Long orderId = orderService.createOrder(orderDto);
+        Long orderId = orderService.createOrder(customerId, orderDto);
         return ResponseEntity.created(URI.create(BASE_MAPPING + "/" + orderId.longValue()))
                 .build();
     }
+
 }

@@ -1,8 +1,9 @@
 package com.rapidkart.orderservice.service;
 
+import com.rapidkart.orderservice.exceptions.CustomerNotFoundException;
 import com.rapidkart.orderservice.model.OrderDto;
 
 public interface OrderService {
 
-    Long createOrder(OrderDto orderDto);
+    Long createOrder(Long customerId, OrderDto orderDto) throws CustomerNotFoundException;
 }
