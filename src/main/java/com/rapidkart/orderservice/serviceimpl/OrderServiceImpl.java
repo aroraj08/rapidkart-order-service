@@ -7,8 +7,8 @@ import com.rapidkart.orderservice.model.CustomerDto;
 import com.rapidkart.orderservice.model.OrderDto;
 import com.rapidkart.orderservice.model.OrderPagedList;
 import com.rapidkart.orderservice.repository.OrderRepository;
+import com.rapidkart.orderservice.service.CustomerService;
 import com.rapidkart.orderservice.service.OrderService;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -23,17 +23,15 @@ public class OrderServiceImpl implements OrderService {
 
     private final OrderRepository orderRepository;
     private final OrderMapper orderMapper;
-    private final RestTemplate restTemplate;
-
-    @Value("${GET_CUSTOMER_SERVICE_URI}")
-    private String CUSTOMER_SERVICE_URI;
+    private final CustomerService customerService;
 
     public OrderServiceImpl(OrderRepository orderRepository, OrderMapper orderMapper,
-                            RestTemplate restTemplate) {
+                            RestTemplate restTemplate, CustomerService customerService) {
         this.orderRepository = orderRepository;
         this.orderMapper = orderMapper;
-        this.restTemplate = restTemplate;
+        this.customerService = customerService;
     }
+
     @Override
     public Long createOrder(Long customerId, OrderDto orderDto) throws CustomerNotFoundException {
 
@@ -69,13 +67,9 @@ public class OrderServiceImpl implements OrderService {
         }
     }
 
-    private ResponseEntity<CustomerDto> getCustomerData(Long customerId) {
-        return restTemplate.getForEntity(CUSTOMER_SERVICE_URI + "/{customerId}",
-                CustomerDto.class, customerId);
-    }
     private boolean isCustomerPresent(Long customerId) throws CustomerNotFoundException {
 
-        ResponseEntity<CustomerDto> responseEntity = getCustomerData(customerId);
+        ResponseEntity<CustomerDto> responseEntity = customerService.getCustomerInfo(customerId);
         if (!responseEntity.getStatusCode().is2xxSuccessful()) {
             return false;
         }
