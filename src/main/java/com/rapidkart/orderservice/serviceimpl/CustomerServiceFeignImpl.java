@@ -2,7 +2,6 @@ package com.rapidkart.orderservice.serviceimpl;
 
 import com.rapidkart.orderservice.model.CustomerDto;
 import com.rapidkart.orderservice.service.CustomerService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Profile;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
