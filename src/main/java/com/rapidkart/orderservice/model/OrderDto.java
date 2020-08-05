@@ -3,7 +3,7 @@ package com.rapidkart.orderservice.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.rapidkart.orderservice.domain.OrderStatus;
+import com.rapidkart.orderservice.domain.OrderState;
 import com.rapidkart.orderservice.domain.PaymentMode;
 import lombok.*;
 import javax.validation.constraints.Null;
@@ -23,7 +23,7 @@ public class OrderDto {
 
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssZ", shape = JsonFormat.Shape.STRING)
     private OffsetDateTime createdDate = null;
-    private OrderStatus orderStatus;
+    private OrderState orderStatus;
     private PaymentMode paymentMode;
     private Double totalAmount;
 

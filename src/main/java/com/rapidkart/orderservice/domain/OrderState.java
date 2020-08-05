@@ -1,0 +1,7 @@
+package com.rapidkart.orderservice.domain;
+
+public enum OrderState {
+    NEW, VALIDATION_PENDING, VALIDATED, VALIDATION_ERROR,
+    ALLOCATION_PENDING, ALLOCATION_DONE, ALLOCATION_ERROR,
+    ORDER_PLACED
+}

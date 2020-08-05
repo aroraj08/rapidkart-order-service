@@ -18,12 +18,12 @@ public class Order extends BaseEntity {
 
     @Builder
     public Order(Long id, Timestamp createdDate, Timestamp lastModifiedDate,
-                 Long version, Long customerId, OrderStatus orderStatus, PaymentMode paymentMode,
+                 Long version, Long customerId, OrderState orderState, PaymentMode paymentMode,
                  Double totalAmount, Set<OrderLine> orderLines) {
 
         super(id, createdDate, lastModifiedDate, version);
         this.customerId = customerId;
-        this.orderStatus = orderStatus;
+        this.orderState = orderState;
         this.paymentMode = paymentMode;
         this.totalAmount = totalAmount;
         this.orderLines = orderLines;
@@ -32,7 +32,7 @@ public class Order extends BaseEntity {
     private Long customerId;
 
     @Enumerated(value=EnumType.STRING)
-    private OrderStatus orderStatus;
+    private OrderState orderState;
 
     @Enumerated(value = EnumType.STRING)
     private PaymentMode paymentMode;
