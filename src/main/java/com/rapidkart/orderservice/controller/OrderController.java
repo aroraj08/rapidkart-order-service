@@ -1,8 +1,8 @@
 package com.rapidkart.orderservice.controller;
 
 import com.rapidkart.orderservice.exceptions.CustomerNotFoundException;
-import com.rapidkart.orderservice.model.OrderDto;
-import com.rapidkart.orderservice.model.OrderPagedList;
+import com.rapidkart.model.OrderDto;
+import com.rapidkart.model.OrderPagedList;
 import com.rapidkart.orderservice.service.OrderService;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.net.URI;
-
-import static org.springframework.beans.support.PagedListHolder.DEFAULT_PAGE_SIZE;
 
 @RestController
 @RequestMapping("/api/v1/orders/{customerId}")

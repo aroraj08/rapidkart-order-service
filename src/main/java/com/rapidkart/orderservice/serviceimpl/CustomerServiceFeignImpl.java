@@ -1,6 +1,6 @@
 package com.rapidkart.orderservice.serviceimpl;
 
-import com.rapidkart.orderservice.model.CustomerDto;
+import com.rapidkart.model.CustomerDto;
 import com.rapidkart.orderservice.service.CustomerService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.http.ResponseEntity;

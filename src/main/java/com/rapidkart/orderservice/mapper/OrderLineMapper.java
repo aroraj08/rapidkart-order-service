@@ -1,7 +1,7 @@
 package com.rapidkart.orderservice.mapper;
 
 import com.rapidkart.orderservice.domain.OrderLine;
-import com.rapidkart.orderservice.model.OrderLineDto;
+import com.rapidkart.model.OrderLineDto;
 import org.mapstruct.Mapper;
 
 @Mapper
