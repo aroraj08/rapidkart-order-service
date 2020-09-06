@@ -1,4 +1,4 @@
-package com.rapidkart.orderservice.model;
+package com.rapidkart.model;
 
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;

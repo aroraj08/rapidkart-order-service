@@ -1,0 +1,6 @@
+package com.rapidkart.orderservice.domain;
+
+public enum OrderEvent {
+    VALIDATE_ORDER, VALIDATION_SUCCESS, VALIDATION_FAILURE,
+    ALLOCATE_ORDER, ALLOCATION_SUCCESS, ALLOCATION_FAILURE, PLACE_ORDER
+}

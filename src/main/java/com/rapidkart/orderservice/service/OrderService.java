@@ -1,8 +1,8 @@
 package com.rapidkart.orderservice.service;
 
 import com.rapidkart.orderservice.exceptions.CustomerNotFoundException;
-import com.rapidkart.orderservice.model.OrderDto;
-import com.rapidkart.orderservice.model.OrderPagedList;
+import com.rapidkart.model.OrderDto;
+import com.rapidkart.model.OrderPagedList;
 import org.springframework.data.domain.Pageable;
 
 public interface OrderService {

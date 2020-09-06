@@ -3,9 +3,9 @@ package com.rapidkart.orderservice.serviceimpl;
 import com.rapidkart.orderservice.domain.Order;
 import com.rapidkart.orderservice.exceptions.CustomerNotFoundException;
 import com.rapidkart.orderservice.mapper.OrderMapper;
-import com.rapidkart.orderservice.model.CustomerDto;
-import com.rapidkart.orderservice.model.OrderDto;
-import com.rapidkart.orderservice.model.OrderPagedList;
+import com.rapidkart.model.CustomerDto;
+import com.rapidkart.model.OrderDto;
+import com.rapidkart.model.OrderPagedList;
 import com.rapidkart.orderservice.repository.OrderRepository;
 import com.rapidkart.orderservice.service.CustomerService;
 import com.rapidkart.orderservice.service.OrderService;
@@ -24,12 +24,15 @@ public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
     private final OrderMapper orderMapper;
     private final CustomerService customerService;
+    private final OrderManager orderManager;
 
     public OrderServiceImpl(OrderRepository orderRepository, OrderMapper orderMapper,
-                            RestTemplate restTemplate, CustomerService customerService) {
+                            RestTemplate restTemplate, CustomerService customerService,
+                            OrderManager orderManager) {
         this.orderRepository = orderRepository;
         this.orderMapper = orderMapper;
         this.customerService = customerService;
+        this.orderManager = orderManager;
     }
 
     @Override
@@ -41,7 +44,8 @@ public class OrderServiceImpl implements OrderService {
             Order order = orderMapper.orderDtoToOrder(orderDto);
 
             order.getOrderLines().forEach(orderLine -> orderLine.setOrder(order));
-            Order savedOrder = orderRepository.save(order);
+            //Order savedOrder = orderRepository.save(order);
+            Order savedOrder = orderManager.newOrder(order);
             return savedOrder.getId();
         } else {
             throw new CustomerNotFoundException("Customer does not exist");

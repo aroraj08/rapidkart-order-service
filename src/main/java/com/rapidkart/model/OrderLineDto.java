@@ -1,4 +1,4 @@
-package com.rapidkart.orderservice.model;
+package com.rapidkart.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

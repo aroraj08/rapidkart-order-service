@@ -1,4 +1,4 @@
-package com.rapidkart.orderservice.model;
+package com.rapidkart.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -6,6 +6,8 @@ import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Null;
+import java.io.Serializable;
+import java.util.Set;
 
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -13,7 +15,7 @@ import javax.validation.constraints.Null;
 @NoArgsConstructor
 @Getter
 @Setter
-public class CustomerDto {
+public class CustomerDto implements Serializable {
 
     @JsonProperty("customerId")
     @Null
@@ -27,4 +29,9 @@ public class CustomerDto {
     @NotBlank
     private String lastName;
 
+    @JsonProperty("addresses")
+    private Set<AddressDto> addressSet;
+
+    @JsonProperty("isLegitimateUser")
+    private Boolean isLegitimateUser;
 }

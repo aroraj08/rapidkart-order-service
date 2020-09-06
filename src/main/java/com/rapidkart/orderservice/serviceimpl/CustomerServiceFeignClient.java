@@ -1,7 +1,6 @@
 package com.rapidkart.orderservice.serviceimpl;
 
-import com.rapidkart.orderservice.model.CustomerDto;
-import feign.Response;
+import com.rapidkart.model.CustomerDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
